@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高野航太</title>
+    <style type="text/css">
+        * {
+            margin: 0%;
+            padding: 0%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+        body {
+            font-family: "游明朝";
+            background-color: black;
+            color: white;
+        }
+
+        /* ヘッダー */
+        .site-header {
+            position: fixed;
+            writing-mode: vertical-rl;
+            font-family: "游明朝";
+            font-size: 80px;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+        }
+
+        /* 高野航太 */
+        .name-kanji {
+            margin-right: 50px;
+            margin-top: 50px;
+            width: 100px;
+        }
+
+        /* TakanoKota */
+        .name-alphabet {
+            font-size: 35%;
+            margin-top: 55px;
+        }
+
+        /* フロートメニュー */
+        .footer-txt {
+            writing-mode: horizontal-tb;
+            position: absolute;
+            left: 50px;
+            bottom: 50px;
+            font-size: 30%;
+        }
+
+        /* フロートメニューのテキスト */
+        a {
+            display: block;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* トップ画像 */
+        .header-img {
+            text-align: center;
+            width: 100%;
+            margin-bottom: 150px;
+        }
+
+        /* プロフィール */
+        .profile {
+            padding: 150px 0px;
+            width: 100%;
+            text-align: center;
+            font-size: 40px;
+        }
+
+        /* 来歴とスキル */
+        .profile-title {
+            margin-top: 60px;
+        }
+
+        /* 来歴の文章 */
+        .profile-contents {
+            font-size: 60%;
+        }
+
+        /* photo */
+        .gallery {
+            width: 100%;
+            margin-top: 360px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .gallery-title {
+            margin: 30px;
+            font-size: 40px;
+        }
+
+        .photo {
+            margin: 1%;
+            margin-top: 50px;
+            width: 30%;
+            height: 30%;
+        }
+
+        .copyright {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        /* js非表示 */
+        .js-hide {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(40px);
+            transition: all 1s;
+        }
+
+        /* 表示 */
+        .js-show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ヘッダーメニュー -->
+    <header class="site-header">
+        <a href="#top" class="name-kanji"> 高野航太</a>
+        <a href="#top" class="name-alphabet">Takano Kota</a>
+        <div class="footer-txt">
+            <a href="#top">TOP</a>
+            <a href="#creer">PROFILE</a>
+            <a href="#photo">PHOTO</a>
+        </div>
+    </header>
+
+    <!-- ヘッダー画像 -->
+    <img src="img/header_img.jpg" class="header-img" id="top">
+
+    <!-- プロフィール -->
+    <div class="profile" id="creer">
+        <h2 class="profile-title">来歴</h2>
+        <div class="profile-contents">
+            <p class="js-hide">長野県出身</p>
+            <p class="js-hide">東京デザイナー学院卒業</p>
+        </div>
+        <h2 class="profile-title">スキル</h2>
+        <div class="profile-contents">
+            <P class="js-hide">AfterEffects</P>
+            <p class="js-hide">illustrator</p>
+        </div>
+    </div>
+
+    <!-- ギャラリー -->
+    <div class="gallery">
+        <h2 class="gallery-title" id="photo">PHOTO</h2>
+        <div class="photos">
+            <img src="img/image-001.jpg" class="photo js-hide">
+            <img src="img/image-002.jpg" class="photo js-hide">
+            <img src="img/image-003.jpg" class="photo js-hide">
+            <img src="img/image-004.jpg" class="photo js-hide">
+            <img src="img/image-005.jpg" class="photo js-hide">
+            <img src="img/image-006.jpg" class="photo js-hide">
+            <img src="img/image-007.png" class="photo js-hide">
+            <img src="img/image-008.png" class="photo js-hide">
+            <img src="img/image-009.jpg" class="photo js-hide">
+        </div>
+    </div>
+
+    <!-- 著作権表示 -->
+    <div class="copyright">© 2021KotaTakano</div>
+
+    <script>
+
+        function showElementAnimation() {
+            const elem = document.getElementsByClassName('js-hide');
+            if (!elem) return;
+
+            // 現在の位置
+            const scrollY = window.pageYOffset
+            // 画面の高さ
+            const winH = window.innerHeight;
+
+            for (let i = 0; i < elem.length; i++) {
+                // コンテンツの位置
+                let elemY = elem[i].getBoundingClientRect().top + scrollY;
+                // ランダム
+                const random = Math.random() * 500;
+
+                if (scrollY + winH - 100 > elemY) {
+                    window.setTimeout(() => { elem[i].classList.add('js-show') }, random)
+                } else if (scrollY + winH < elemY) {
+                    elem[i].classList.remove('js-show');
+                }
+            }
+
+        }
+        showElementAnimation();
+        window.addEventListener('scroll', showElementAnimation);
+    </script>
+
+</body>
+
+</html>
